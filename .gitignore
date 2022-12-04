@@ -55,3 +55,4 @@ ir_gen.opam
 # Unignore these for now
 !dune-project
 !Makefile
+!LICENSE

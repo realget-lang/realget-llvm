@@ -44,15 +44,10 @@ type function_defn =
 (** Method defn consists the method name, return type (and whether it returns a borrowed
     ref), the list of params and the body expr of the function *)
 type method_defn =
-  | TMethod of
-      Method_name.t
-      * borrowed_ref option
-      * type_expr
-      * param list
-      * block_expr
+  | TMethod of Method_name.t * borrowed_ref option * type_expr * param list * block_expr
 
-(** Class definitions consist of the class name and optionally specifying if it's generic and
-    if it inherits from another class,the fields and methods in the class *)
+(** Class definitions consist of the class name and optionally specifying if it's generic
+    and if it inherits from another class,the fields and methods in the class *)
 type class_defn =
   | TClass of
       Class_name.t

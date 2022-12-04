@@ -1,12 +1,11 @@
 (library
-  (name parsing)
-  (public_name realget.parsing)
-  (libraries core fmt ast)
-  (preprocess
-   (pps bisect_ppx --conditional))
-  (lint
-   (pps ppx_js_style -annotated-ignores -styler -pretty -dated-deprecation))
-)
+ (name parsing)
+ (public_name realget.parsing)
+ (libraries core fmt ast)
+ (preprocess
+  (pps bisect_ppx --conditional))
+ (lint
+  (pps ppx_js_style -annotated-ignores -styler -pretty -dated-deprecation)))
 
 (ocamllex lexer)
 
