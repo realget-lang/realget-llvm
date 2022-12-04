@@ -1,0 +1,18 @@
+(executable
+ (name main)
+ (modules main)
+ (libraries core fmt)
+ (preprocess
+  (pps ppx_jane bisect_ppx --conditional))
+ (lint
+  (pps ppx_js_style -annotated-ignores -styler -pretty -dated-deprecation)))
+
+(library
+ (public_name realget)
+ (name compile_to_ir)
+ (modules compile_to_ir)
+ (libraries core fmt parsing)
+ (preprocess
+  (pps ppx_jane bisect_ppx --conditional))
+ (lint
+  (pps ppx_js_style -annotated-ignores -styler -pretty -dated-deprecation)))
