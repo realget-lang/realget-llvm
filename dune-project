@@ -2,7 +2,7 @@
 
 (name realget)
 
-(generate_opam_files true)
+(generate_opam_files false)
 
 (source
  (github realget-lang/realget-llvm))
@@ -24,9 +24,6 @@
   alcotest
   core
   ocamlformat
-  bisect-ppx
-  ppx-tools-versioned
-  ppx-jane
   fmt
   menhir
   )

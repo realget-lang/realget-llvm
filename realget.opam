@@ -14,9 +14,9 @@ depends: [
   "alcotest"
   "core"
   "ocamlformat"
-  "bisect-ppx"
-  "ppx-tools-versioned"
-  "ppx-jane"
+  "bisect_ppx"
+  "ppx_tools_versioned"
+  "ppx_jane"
   "fmt"
   "menhir"
   "odoc" {with-doc}
