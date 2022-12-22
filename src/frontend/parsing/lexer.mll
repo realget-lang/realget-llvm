@@ -46,9 +46,8 @@ rule read_token =
   | ":=" { COLONEQ }
   | "let" { LET }
   | "new" { NEW }
-  | "const" {CONST }
-  | "var" { VAR }
-  | "func" { FUNCTION }
+  | "mutable" { MUTABLE }
+  | "fn" { FUNCTION }
   | "consume" { CONSUME }
   | "finish" { FINISH }
   | "async" { ASYNC }
@@ -69,7 +68,7 @@ rule read_token =
   | "printf" { PRINTF }
   | whitespace { read_token lexbuf }
   | "//" { read_inline_comment lexbuf }
-  | "/*" { read_multi_line_comment lexbuf }
+  | "(*" { read_multi_line_comment lexbuf }
   | int { INT (int_of_string (Lexing.lexeme lexbuf))}
   | id { ID (Lexing.lexeme lexbuf) }
     | '"'   {read_string (Buffer.create 17) lexbuf }
@@ -83,7 +82,7 @@ and read_inline_comment = parse
   | _ { read_inline_comment lexbuf }
 
 and read_multi_line_comment = parse
-  | "/*" { read_token lexbuf }
+  | "*)" { read_token lexbuf }
   | newline { next_line lexbuf; read_multi_line_comment lexbuf }
   | eof { raise (SyntaxError ("Lexer - Unexpected EOF - Comment line is not terminated.")) }
   | _ { read_multi_line_comment lexbuf }

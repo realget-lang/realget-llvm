@@ -15,8 +15,8 @@ module Field_name : ID
 module Method_name : ID
 module Function_name : ID
 
-(** determines whether field is (im)mutable *)
-type modifier = MConst  (** immutable *) | MVar  (** mutable *)
+(** determines if a value is mutable *)
+type modifier = Mutable
 
 (** determines if a reference is being borrowed *)
 type borrowed_ref = Borrowed
@@ -33,7 +33,7 @@ type type_expr =
   | TEGeneric
 
 (** Class field declarations are of the form "modifier type name"*)
-type field_defn = TField of modifier * type_expr * Field_name.t
+type field_defn = TField of modifier option * type_expr * Field_name.t
 
 (** Parameter of a function can be "borrowed" *)
 type param = TParam of type_expr * Var_name.t * borrowed_ref option

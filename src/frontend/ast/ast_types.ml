@@ -28,9 +28,9 @@ module Field_name : ID = String_id
 module Method_name : ID = String_id
 module Function_name : ID = String_id
 
-type modifier = MConst | MVar
+type modifier = Mutable
 
-let string_of_modifier = function MConst -> "Const" | MVar -> "Var"
+let string_of_modifier = function Some Mutable -> "Mutable" | None -> ""
 
 type borrowed_ref = Borrowed
 
@@ -63,7 +63,7 @@ let rec string_of_type = function
   | TEBool -> "Bool"
   | TEGeneric -> "T"
 
-type field_defn = TField of modifier * type_expr * Field_name.t
+type field_defn = TField of modifier option * type_expr * Field_name.t
 type param = TParam of type_expr * Var_name.t * borrowed_ref option
 
 let get_params_types params =

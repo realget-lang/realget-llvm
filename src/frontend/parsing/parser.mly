@@ -30,8 +30,7 @@
 %token  COLONEQ
 %token  LET 
 %token  NEW 
-%token  CONST 
-%token  VAR 
+%token  MUTABLE
 %token  FUNCTION 
 %token  CONSUME 
 %token  FINISH 
@@ -132,8 +131,7 @@ borrowed_ref:
 /* Field definitions */
 
 modifier:
-| CONST {MConst}
-| VAR {MVar}
+| MUTABLE {Mutable}
 
 field_defn:
 | m=modifier; field_type=type_expr; field_name=ID; SEMICOLON {TField(m, field_type, Field_name.of_string field_name)}
