@@ -40,24 +40,22 @@ rule read_token =
   | "%" { MODULO }
   | "<" { LANGLE }
   | ">" { RANGLE }
+  | "&" { BORROWED }
   | "&&" { AND }
   | "||" { OR }
   | "!" { EXCLAMATION_MARK }
   | ":=" { COLONEQ }
-  | "let" { LET }
-  | "new" { NEW }
-  | "mutable" { MUTABLE }
-  | "fn" { FUNCTION }
-  | "consume" { CONSUME }
-  | "finish" { FINISH }
-  | "async" { ASYNC }
-  | "class" { CLASS }
-  | "extends" {EXTENDS}
+  | "->" { ARROW }
+  | "i_has_a" { LET }
+  | "lemme" { NEW }
+  | "i_has_sus" { MUTABLE }
+  | "i_can_duz" { FUNCTION }
+  | "i_has_class" { CLASS }
   | generic_type_param {GENERIC_TYPE}
   | "int" { TYPE_INT }
-  | "bool" { TYPE_BOOL } 
+  | "yarn" { TYPE_YARN } (* string *)
+  | "facts" { TYPE_FACTS } 
   | "void" { TYPE_VOID }
-  | "borrowed" { BORROWED }
   | "real" { REAL }
   | "fake" { FAKE }
   | "while" { WHILE }
@@ -65,7 +63,11 @@ rule read_token =
   | "else" { ELSE }
   | "for" { FOR }
   | "main" { MAIN }
-  | "printf" { PRINTF }
+  | "gimme" { RETURN }
+  | "snatch" { MATCH }
+  | "vibe" { TRY }
+  | "got" { CATCH }
+  | "oops" { THROW }
   | whitespace { read_token lexbuf }
   | "//" { read_inline_comment lexbuf }
   | "(*" { read_multi_line_comment lexbuf }

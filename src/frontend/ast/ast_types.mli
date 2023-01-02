@@ -10,7 +10,7 @@ module type ID = sig
 end
 
 module Var_name : ID
-module Class_name : ID
+module Object_name : ID
 module Field_name : ID
 module Method_name : ID
 module Function_name : ID
@@ -26,13 +26,14 @@ type generic_type = Generic
 (** Defines types of expressions in a program*)
 type type_expr =
   | TEInt
-  | TEClass   of Class_name.t * type_expr option
+  | TEObject   of Object_name.t * type_expr option
       (** specify type parameters for generic classes(optional) *)
   | TEVoid
-  | TEBool
+  | TEFacts
+  | TEYarn
   | TEGeneric
 
-(** Class field declarations are of the form "modifier type name"*)
+
 type field_defn = TField of modifier option * type_expr * Field_name.t
 
 (** Parameter of a function can be "borrowed" *)
@@ -68,7 +69,6 @@ val string_of_bin_op : bin_op -> string
 val string_of_un_op : un_op -> string
 val string_of_maybe_borrowed : borrowed_ref option -> string
 val string_of_maybe_generic : generic_type option -> string
-val string_of_maybe_superclass : Class_name.t option -> string
 
 (** Exceptions *)
 

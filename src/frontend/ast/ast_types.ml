@@ -23,7 +23,7 @@ module String_id = struct
 end
 
 module Var_name : ID = String_id
-module Class_name : ID = String_id
+module Object_name : ID = String_id
 module Field_name : ID = String_id
 module Method_name : ID = String_id
 module Function_name : ID = String_id
@@ -40,20 +40,17 @@ type generic_type = Generic
 
 let string_of_maybe_generic = function Some Generic -> "<T>" | None -> ""
 
-let string_of_maybe_superclass = function
-  | Some class_name -> Fmt.str "extends %s" (Class_name.to_string class_name)
-  | None            -> ""
-
 type type_expr =
   | TEInt
-  | TEClass   of Class_name.t * type_expr option  (** optionally specify type parameters *)
+  | TEObject   of Object_name.t * type_expr option  (** optionally specify type parameters *)
   | TEVoid
   | TEBool
+  | TEYarn
   | TEGeneric
 
 let rec string_of_type = function
   | TEInt -> "Int"
-  | TEClass (class_name, maybe_type_param) ->
+  | TEObject (object_name, maybe_type_param) ->
       let maybe_type_param_str =
         match maybe_type_param with
         | Some type_param -> Fmt.str "<%s>" (string_of_type type_param)
@@ -61,6 +58,7 @@ let rec string_of_type = function
       Fmt.str "%s%s" (Class_name.to_string class_name) maybe_type_param_str
   | TEVoid -> "Void"
   | TEBool -> "Bool"
+  | TEYarn -> "Yarn"
   | TEGeneric -> "T"
 
 type field_defn = TField of modifier option * type_expr * Field_name.t
